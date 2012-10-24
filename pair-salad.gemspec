@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.default_executable = %q{pair-salad}
-  gem.files         = ["Rakefile", "README.md", "bin/pair-salad"]
-  gem.executables   = ["pair-salad"]
+  gem.files         = ["Rakefile", "README.md", "bin/pair"]
+  gem.executables   = ["pair"]
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "pair-salad"
   gem.require_paths = ["lib"]
