@@ -15,4 +15,6 @@ Gem::Specification.new do |gem|
   gem.name          = "pair-salad"
   gem.require_paths = ["lib"]
   gem.version       = "0.0.1"
+  gem.add_development_dependency("rspec")
+  gem.add_development_dependency("ruby-debug")
 end
