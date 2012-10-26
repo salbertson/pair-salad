@@ -1,7 +1,3 @@
-# Pair::Salad
-
-TODO: Write a gem description
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,7 +14,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add a .authors file to your project root.
+
+    ck Clark Kent
+    bw Bruce Wayne
+    pp Peter Parker
+
+Run pair command with authors' initials.
+
+    $ pair ck bw
+
+When you're done pairing run the pair command with no initials.
+
+    $ pair
 
 ## Contributing
 
