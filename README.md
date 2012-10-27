@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/salbertson/pair-salad.png)](https://travis-ci.org/salbertson/pair-salad)
+
 ## Installation
 
 Add this line to your application's Gemfile:
