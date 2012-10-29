@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "lib/pair_salad_runner"
+require "pair_salad_runner"
 
 PairSaladRunner.new.run(ARGV)
