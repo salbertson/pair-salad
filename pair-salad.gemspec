@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = "0.0.2"
   gem.add_development_dependency("rspec")
-  gem.add_development_dependency("ruby-debug")
+  gem.add_development_dependency("debugger")
 end
