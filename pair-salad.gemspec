@@ -1,20 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |gem|
-  gem.name = %q{pair-salad}
+  gem.name          = "pair-salad"
   gem.authors       = ["Scott Albertson"]
   gem.email         = ["salbertson@streamsend.com"]
-  gem.description   = %q{Git utility used when pair programming.}
-  gem.summary       = %q{Git utility used when pair programming.}
-  gem.homepage      = ""
+  gem.summary       = %q{Handy gem for adding multiple authors to git commits.}
+  gem.description   = %q{https://github.com/salbertson/pair-salad}
+  gem.homepage      = "https://github.com/salbertson/pair-salad"
 
   gem.default_executable = %q{pair-salad}
-  gem.files         = ["Rakefile", "README.md", "bin/pair"]
+  gem.files         = ["README.md", "lib/pair_salad_runner.rb", "bin/pair"]
   gem.executables   = ["pair"]
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "pair-salad"
-  gem.require_paths = ["lib"]
-  gem.version       = "0.0.4"
+  gem.test_files    = gem.files.grep(%r{^(spec)/})
+  gem.version       = "0.0.5"
   gem.add_development_dependency("rspec")
   gem.add_development_dependency("debugger")
 end
