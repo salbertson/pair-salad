@@ -16,11 +16,13 @@ Or install it yourself as:
 
 ## Usage
 
-Add a .authors file to your project root.
+Add a .pair file to your project root.
 
-    ck Clark Kent
-    bw Bruce Wayne
-    pp Peter Parker
+    email: engineers@streamsend.com
+    authors:
+      - ck Clark Kent
+      - bw Bruce Wayne
+      - pp Peter Parker
 
 Run pair command with authors' initials.
 

@@ -1,12 +1,11 @@
-class PairSaladRunner
-  EMAIL_PREFIX = "engineers"
-  EMAIL_SUFFIX = "@streamsend.com"
+require "yaml"
 
+class PairSaladRunner
   def run(args)
     @pair_initials = args.sort
 
     check_for_git_directory
-    check_for_authors_file
+    check_for_config_file
 
     @authors = parse_authors_from_file
 
@@ -38,14 +37,16 @@ user.email = #{git_email_address}
     end
   end
 
-  def check_for_authors_file
-    unless File.exists?(".authors")
+  def check_for_config_file
+    unless File.exists?(".pair")
       puts <<-message
-You do not have an .authors file in the repository.
-Repository needs a file named .authors in the following format:
-  ck Clark Kent
-  bw Bruce Wayne
-  pp Peter Parker
+You do not have an .pair file in the repository.
+Repository needs a file named .pair in the following format:
+  email: engineers@streamsend.com
+  authors:
+    - ck Clark Kent
+    - bw Bruce Wayne
+    - pp Peter Parker
       message
 
       exit 1
@@ -54,8 +55,8 @@ Repository needs a file named .authors in the following format:
 
   def parse_authors_from_file
     authors = {}
-    File.open('.authors').each_line do |line|
-      initials, name = line.match(/^(\w+)\s+(.*)$/).captures
+    configuration["authors"].each do |author_line|
+      initials, name = author_line.match(/^(\w+)\s+(.*)$/).captures
       if @pair_initials.include? initials
         authors[initials] = name
       end
@@ -76,6 +77,11 @@ Repository needs a file named .authors in the following format:
   end
 
   def build_email_address
-    "#{EMAIL_PREFIX}+#{@pair_initials.join("+")}#{EMAIL_SUFFIX}"
+    prefix, hostname = configuration["email"].split("@")
+    "#{prefix}+#{@pair_initials.join("+")}@#{hostname}"
+  end
+
+  def configuration
+    @configuration ||= YAML.load(File.read('.pair'))
   end
 end
