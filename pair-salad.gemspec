@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.files         = ["README.md", "lib/pair_salad_runner.rb", "bin/pair"]
   gem.executables   = ["pair"]
   gem.test_files    = gem.files.grep(%r{^(spec)/})
-  gem.version       = "0.0.5"
+  gem.version       = "0.1.0"
   gem.add_development_dependency("rspec")
   gem.add_development_dependency("debugger")
 end
