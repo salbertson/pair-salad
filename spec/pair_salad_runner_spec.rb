@@ -8,22 +8,41 @@ authors:
   - sa Scott Albertson
   - ck Clark Kent
   - jb Joe Bob
+  - co Chris O'Meara
     config
     File.stub(:read).with('.pair').and_return config_file
   end
 
   describe "#run" do
     context "with a .git directory" do
+      before do
+        File.stub(:exists?).with(".git").and_return true
+      end
+
       context "with a .pair file" do
+        before do
+          File.stub(:exists?).with(".pair").and_return true
+        end
+
         context "with selected authors" do
-          it "sets selected git user's name and email" do
+          it "sets selected git user names and email addresses" do
             runner = PairSaladRunner.new
             stub_config_file
 
-            runner.should_receive(:system).ordered.with("git config user.name 'Clark Kent and Scott Albertson'")
-            runner.should_receive(:system).ordered.with("git config user.email 'engineers+ck+sa@streamsend.com'")
+            runner.should_receive(:system).ordered.with(%q[git config user.name "Clark Kent and Scott Albertson"])
+            runner.should_receive(:system).ordered.with(%q[git config user.email "engineers+ck+sa@streamsend.com"])
 
             runner.run(["sa", "ck"])
+          end
+
+          it "sets selected git user names and email addresses even if one of them has a funny name" do
+            runner = PairSaladRunner.new
+            stub_config_file
+
+            runner.should_receive(:system).ordered.with(%q[git config user.name "Chris O'Meara and Scott Albertson"])
+            runner.should_receive(:system).ordered.with(%q[git config user.email "engineers+co+sa@streamsend.com"])
+
+            runner.run(["sa", "co"])
           end
 
           it "displays pair username" do
@@ -62,6 +81,10 @@ user.email = engineers+ck+sa@streamsend.com
       end
 
       context "without a .pair file" do
+        before do
+          File.stub(:exists?).with(".pair").and_return false
+        end
+
         it "displays message and exits" do
           runner = PairSaladRunner.new
           File.stub(:exists?).with(".git").and_return true
@@ -85,6 +108,10 @@ Repository needs a file named .pair in the following format:
     end
 
     context "without a .git directory" do
+      before do
+        File.stub(:exists?).with(".git").and_return false
+      end
+
       it "displays message and exits" do
         runner = PairSaladRunner.new
         File.stub(:exists?).with(".git").and_return false

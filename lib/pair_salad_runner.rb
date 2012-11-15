@@ -11,10 +11,10 @@ class PairSaladRunner
 
     if @authors.any?
       git_username = build_username
-      system("git config user.name '#{git_username}'")
+      system("git config user.name \"#{git_username}\"")
 
       git_email_address = build_email_address
-      system("git config user.email '#{git_email_address}'")
+      system("git config user.email \"#{git_email_address}\"")
 
       puts <<-message
 user.name = #{git_username}
