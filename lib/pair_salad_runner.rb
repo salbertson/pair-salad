@@ -42,7 +42,7 @@ user.email = #{git_email_address}
       puts <<-message
 You do not have an .pair file in the repository.
 Repository needs a file named .pair in the following format:
-  email: engineers@streamsend.com
+  email: engineers@example.com
   authors:
     - ck Clark Kent
     - bw Bruce Wayne

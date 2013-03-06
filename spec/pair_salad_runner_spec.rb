@@ -3,7 +3,7 @@ require "pair_salad_runner"
 describe PairSaladRunner do
   def stub_config_file
     config_file = StringIO.new(<<-config)
-email: engineers@streamsend.com
+email: engineers@example.com
 authors:
   - sa Scott Albertson
   - ck Clark Kent
@@ -30,7 +30,7 @@ authors:
             stub_config_file
 
             runner.should_receive(:system).ordered.with(%q[git config user.name "Clark Kent and Scott Albertson"])
-            runner.should_receive(:system).ordered.with(%q[git config user.email "engineers+ck+sa@streamsend.com"])
+            runner.should_receive(:system).ordered.with(%q[git config user.email "engineers+ck+sa@example.com"])
 
             runner.run(["sa", "ck"])
           end
@@ -40,7 +40,7 @@ authors:
             stub_config_file
 
             runner.should_receive(:system).ordered.with(%q[git config user.name "Chris O'Meara and Scott Albertson"])
-            runner.should_receive(:system).ordered.with(%q[git config user.email "engineers+co+sa@streamsend.com"])
+            runner.should_receive(:system).ordered.with(%q[git config user.email "engineers+co+sa@example.com"])
 
             runner.run(["sa", "co"])
           end
@@ -51,7 +51,7 @@ authors:
 
             runner.should_receive(:puts).with(<<-message)
 user.name = Clark Kent and Scott Albertson
-user.email = engineers+ck+sa@streamsend.com
+user.email = engineers+ck+sa@example.com
             message
 
             runner.run(["sa", "ck"])
@@ -93,7 +93,7 @@ user.email = engineers+ck+sa@streamsend.com
           message = <<-message
 You do not have an .pair file in the repository.
 Repository needs a file named .pair in the following format:
-  email: engineers@streamsend.com
+  email: engineers@example.com
   authors:
     - ck Clark Kent
     - bw Bruce Wayne
