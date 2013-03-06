@@ -18,7 +18,7 @@ Or install it yourself as:
 
 Add a .pair file to your project root.
 
-    email: engineers@streamsend.com
+    email: engineers@example.com
     authors:
       - ck Clark Kent
       - bw Bruce Wayne
